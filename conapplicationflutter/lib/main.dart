@@ -26,9 +26,7 @@ if(ID  == -1){
   print("New drink added!");
   return;
 }
-for (Energydrink energy in allDrinks){
   allDrinks[ID].drink();
-}
 return;
   
 }
