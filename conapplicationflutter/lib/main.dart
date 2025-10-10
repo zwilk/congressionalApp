@@ -26,11 +26,17 @@ class ExpandedExample extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
         crossAxisAlignment: CrossAxisAlignment.center,// Centers children horizontally
         children: <Widget>[
+          CircleAvatar(
+  radius: 40, // Defines the size of the circle
+  backgroundColor: Colors.black, // Background color of the avatar
+  backgroundImage: AssetImage(''), // Optional background image
+),
+Container(height: 50,width: 100),
           Row(
               mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
               crossAxisAlignment: CrossAxisAlignment.center,// Centers children horizontally
               children: <Widget>[
-              Container(color: Colors.white, height: 100, width: 100, child: Text ('1')),
+              Container(color: Colors.black, height: 100, width: 100, child: Text ('1', style: TextStyle(color: Colors.white))),
               Container(color: Colors.black, height: 100, width: 100, child: Image.asset('')),
             ],
           ),
@@ -38,7 +44,7 @@ class ExpandedExample extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
               crossAxisAlignment: CrossAxisAlignment.center,// Centers children horizontally
               children: <Widget>[
-                Container(color: Colors.white, height: 100, width: 100, child: Text ('2')),
+                Container(color: Colors.black, height: 100, width: 100, child: Text ('2', style: TextStyle(color: Colors.white))),
                 Container(color: Colors.black, height: 100, width: 100, child: Image.asset('')),
               ],
             ),
@@ -46,12 +52,12 @@ class ExpandedExample extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
               crossAxisAlignment: CrossAxisAlignment.center,// Centers children horizontally
               children: <Widget>[
-                Container(color: Colors.white, height: 100, width: 100, child: Text ('3')),
+                Container(color: Colors.black, height: 100, width: 100, child: Text ('3', style: TextStyle(color: Colors.white))),
                 Container(color: Colors.black, height: 100, width: 100, child: Image.asset('')),
               ],
             ),
             
-            Container(),
+            Container(height: 50,width: 100),
             const RecentDrinkWidget(),
         ],
       ),
@@ -69,10 +75,10 @@ class RecentDrinkWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
         children: <Widget>[
-          Container(color: Colors.black, height: 100, width: 100),
-          Container(color: Colors.black, height: 100, width: 100),
-          Container(color: Colors.black, height: 100, width: 100),
-          Container(color: Colors.black, height: 100, width: 100),
+          Container(color: Colors.black, height: 100, width: 100,child: Image.asset('')),
+          Container(color: Colors.black, height: 100, width: 100,child: Image.asset('')),
+          Container(color: Colors.black, height: 100, width: 100,child: Image.asset('')),
+          Container(color: Colors.black, height: 100, width: 100,child: Image.asset('')),
         ],
       ),
     );
