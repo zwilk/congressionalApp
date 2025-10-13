@@ -1,8 +1,160 @@
+import 'package:conapplicationflutter/energydrink.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
+
+List allDrinks = [];
+
+List topThree = ['one','two','three'];
 
 void main() {
-  runApp(const MyApp());
+  addDrink("Original");
+  addDrink("Lo Carb");
+  addDrink("Absolutly Zero");
+  addDrink("M-80");
+  addDrink("Khaos");
+  addDrink("Ripper");
+  addDrink("MIXXD");
+  addDrink("Cuba-Lima");
+  addDrink("Zero Ultra");
+  addDrink("Ultra Red");
+  addDrink("Ultra Blue");
+  addDrink("Ultra Violet");
+  addDrink("Ultra Citron");
+  addDrink("Ultra Sunrise");
+  addDrink("Ultra Black");
+  addDrink("Ultra Paradise");
+  addDrink("Ultra Fiesta");
+  addDrink("Ultra Rosa");
+  addDrink("Juiced Ripper");
+  addDrink("Mango Loco");
+  addDrink("Juice Khaos");
+  addDrink("Pacific Punch");
+  addDrink("Lewis Hamilton 44");
+  addDrink("the Doctor");
+  addDrink("Gronk");
+  addDrink("Nitrous Super Dry");
+  addDrink("Nitrous Killer B");
+  addDrink("Nitrous Anti-Gravity");
+  addDrink("Nitrous Black Ice");
+  addDrink("Mixxd Punch Energy");
+  addDrink("Baller's Blend");
+  addDrink("Mad Dog");
+  addDrink("Pipeline Punch");
+  addDrink("Rehab Lemonade");
+  addDrink("Rehab Orangeade");
+  addDrink("Rehab Peach");
+  addDrink("Rehab Pink Lemonade");
+  addDrink("Rehab Rojo Tea");
+  addDrink("Rehab Green Tea");
+  addDrink("Rehab Protean");
+  addDrink("Hydro Mean Green");
+  addDrink("Hydro Tropical Thunder");
+  addDrink("Hydro Manic Melon");
+  addDrink("Hydro Purple Passion");
+  addDrink("Hydro Blue Ice");
+  addDrink("Hydro Zero Sugar");
+  addDrink("Java Vanilla Light");
+  addDrink("Java Kona Blend");
+  addDrink("Java Irish Blend");
+  addDrink("Java Mean Bean");
+  addDrink("Java Loca Moca");
+  addDrink("Java Cappucino");
+  addDrink("Java Toffee");
+  addDrink("Swiss Chocolate");
+  addDrink("Java Chai-Hai");
+  addDrink("Java Russian Blend");
+  addDrink("Java Nut-Up");
+  addDrink("Java Big Black");
+  addDrink("Java Lo-Ball");
+  addDrink("Java Salted Caramel");
+  addDrink("Espresso & Cream");
+  addDrink("Espresso Vanilla");
+  addDrink("Muscle Chocolate");
+  addDrink("Muscle Vanilla");
+  addDrink("Muscle Strawberry");
+  addDrink("Muscle Banana");
+  addDrink("Muscle Caffe Latte");
+  addDrink("X-Presso Hammer");
+  addDrink("X-Presso Midnite");
+  addDrink("MAXX Eclipse");
+  addDrink("MAXX Solaris");
+  addDrink("MAXX Super Dry");
+  addDrink("M-100 Ghost");
+  addDrink("M-100 Phantom");
+  addDrink("Mutant Original Green");
+  addDrink("Mutant Red Dawn");
+  addDrink("Mutant White Lightning");
+  addDrink("Unleaded");
+  addDrink("Import");
+  addDrink("Import Light");
+  addDrink("DUB");
+  addDrink("Heavy Metal");
+  addDrink("Assault");
+  addDrink("Extrastrength");
+  addDrink("Brew Ubermonster");
+  addDrink("Cuba-Libre");
+  addDrink("Extra Strenght M3");
+  addDrink("Mule Ginger Brew");
+
+
+  for (Energydrink energy in allDrinks) {
+    energy.printDrinkProfile();
+  }
+
+   runApp(const MyApp());
 }
+
+void addDrink(String flavor){
+  var energy = Energydrink(flavor, "Monster", allDrinks.length + 1);
+  allDrinks.add(energy);
+return;
+}
+
+
+int alreadyAdded(String brand, String flavor){
+
+  for (Energydrink energy in allDrinks){
+    if(energy.getBrand()== brand){
+      if(energy.getName()==flavor){
+        return energy.getID();
+      }
+    }
+  }
+  return -1;
+}
+
+
+
+void rankADrink(){
+bool firstLoop = true;
+
+  while(firstLoop){
+  print("What is the brand of the drink>");
+String brand  = stdin.readLineSync().toString();
+  print("What is the flavor of the drink>");
+String flavor  = stdin.readLineSync().toString();
+int ID = alreadyAdded(brand, flavor);
+
+if(ID==-1){
+  print("Drink does not exist");
+  continue;
+}
+print("What is the rank of the drink? (first second or third)");
+int place = int.parse(stdin.readLineSync().toString());
+topThree[place-1] = ID;
+
+}
+
+}
+
+
+
+
+
+
+
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,22 +165,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 184, 16, 16)),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -37,15 +174,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -58,52 +186,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+
             const Text('You have pushed the button this many times:'),
             Text(
               '$_counter',
