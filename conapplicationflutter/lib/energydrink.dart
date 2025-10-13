@@ -29,11 +29,9 @@ class Energydrink {
   }
 
   void printDrinkProfile(){
-    print("_____________________________________________________________");
-    print(flavorName);
-    print(brandName);
-    print("you have drank: $howMany cans");
-    print("_____________________________________________________________");
+    print("you have drank $howMany cans of $brandName : $flavorName");
+    return;
+  
   }
   
 
