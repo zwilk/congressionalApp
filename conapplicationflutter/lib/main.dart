@@ -2,11 +2,21 @@ import 'package:conapplicationflutter/energydrink.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
-List allDrinks = [];
+List cocktailList = [];
 
 List topThree = ['one','two','three'];
 
 void main() {
+rankADrink();
+rankADrink();
+rankADrink();
+   runApp(const MyApp());
+}
+
+/**
+ * this method adds 89 flavors of monster
+ */
+void createCocktailList(){
   addDrink("Original");
   addDrink("Lo Carb");
   addDrink("Absolutly Zero");
@@ -95,54 +105,41 @@ void main() {
   addDrink("Cuba-Libre");
   addDrink("Extra Strenght M3");
   addDrink("Mule Ginger Brew");
-
-
-  for (Energydrink energy in allDrinks) {
-    energy.printDrinkProfile();
-  }
-
-   runApp(const MyApp());
 }
 
+
+/**
+ * this method adds each drink ot the list
+ */
 void addDrink(String flavor){
-  var energy = Energydrink(flavor, "Monster", allDrinks.length + 1);
-  allDrinks.add(energy);
+  var energy = Energydrink(flavor, "Monster", cocktailList.length + 1);
+  cocktailList.add(energy);
 return;
 }
 
-
-int alreadyAdded(String brand, String flavor){
-
-  for (Energydrink energy in allDrinks){
-    if(energy.getBrand()== brand){
-      if(energy.getName()==flavor){
-        return energy.getID();
-      }
-    }
-  }
-  return -1;
-}
-
-
-
+/**
+ * this method gets user input for which drink they want to rank, adn then they put it into the desired spot. this will be done through clicks in the final application
+ */
 void rankADrink(){
 bool firstLoop = true;
 
   while(firstLoop){
-  print("What is the brand of the drink>");
-String brand  = stdin.readLineSync().toString();
-  print("What is the flavor of the drink>");
-String flavor  = stdin.readLineSync().toString();
-int ID = alreadyAdded(brand, flavor);
+  print("What is the drink number?");
+int ID  = int.parse(stdin.readLineSync().toString());
 
-if(ID==-1){
-  print("Drink does not exist");
-  continue;
-}
-print("What is the rank of the drink? (first second or third)");
-int place = int.parse(stdin.readLineSync().toString());
-topThree[place-1] = ID;
+for (Energydrink energy in cocktailList) {
+    int drinkID= energy.getID();
 
+    if(ID == drinkID){
+      print("What is the rank of the drink? (first second or third)");
+      int place = int.parse(stdin.readLineSync().toString());
+      topThree[place-1] = ID;
+      return;
+    }
+    else{
+      print("Drink does not exist");
+    }
+  }
 }
 
 }
