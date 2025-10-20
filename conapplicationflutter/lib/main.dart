@@ -7,28 +7,21 @@ class ExpandedApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('Expanded Column Sample')),
-        body: const ExpandedExample(),
+        body:  ExpandedExample(screenHeight: screenHeight,screenWidth: screenWidth,),
       ),
     );
   }
 }
-String? _selectedValue; // Can be null initially
-List<String> _dropdownItems = ['Option 1', 'Option 2', 'Option 3'];
-class HomePage extends StatelessWidget {
-  late double _deviceHeight;
-  late double _deviceWidth;
+ 
   
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
-}
 class ExpandedExample extends StatelessWidget {
-  const ExpandedExample({super.key});
+  final  double screenHeight, screenWidth;
+   const ExpandedExample({super.key,required this.screenHeight, required this.screenWidth});
 
   @override
   Widget build(BuildContext context) {
@@ -40,59 +33,86 @@ class ExpandedExample extends StatelessWidget {
   
         
         children: <Widget>[
-          Row(
+     Row(
+              mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
+          
+              children: <Widget>[
+                
+                  CircleAvatar(     
+                    radius: 40, // Defines the size of the circle
+                    backgroundColor: Colors.black, // Background color of the avatar
+                  // backgroundImage: AssetImage(''), // Optional background image
+                  ),
+                    Expanded(child: Row( children: <Widget>[Container(color: Colors.black, width:screenWidth * 0.75, child: Text ('', style: TextStyle(color: Colors.white))),]),),
+                    
+              ], 
+            ),
+
+      
+           
+                          //  Container(color: Colors.white, height: 3, width: 100),
+
+
+            Expanded(
+              flex: 3,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Container(color: Colors.black, height: screenHeight * 0.13, width: screenWidth * 0.24, child: Text ('1', style: TextStyle(color: Colors.white))),
+                  Container(color: Colors.white, height: 100, width: 3),
+                  Container(color: Colors.black, height: screenHeight * 0.13, width: screenWidth * 0.24, ),//child: Image.asset('')
+                  Container(color: Colors.white, height: 100, width: 3),
+                ],
+              ),
+          ),
+         Container(color: Colors.white, width:2, height: 3),
+         
+          Expanded(
+            flex: 3,
+            child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
          
             children: <Widget>[
-              
-                CircleAvatar(     
-                  radius: 40, // Defines the size of the circle
-                  backgroundColor: Colors.black, // Background color of the avatar
-                 // backgroundImage: AssetImage(''), // Optional background image
-                ),
-                  Container(color: Colors.black, height: 33, width: 150, child: Text ('', style: TextStyle(color: Colors.white))),
-            ], 
-          ),
-          Container(height: 50,width: 100),
-          Container(color: Colors.white, width: 100, height: 3),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
-      
-            children: <Widget>[
-              Container(color: Colors.black, height: 100, width: 100, child: Text ('1', style: TextStyle(color: Colors.white))),
+               Container(color: Colors.black, height: screenHeight * 0.13, width: screenWidth * 0.24, child: Text ('2', style: TextStyle(color: Colors.white))),
               Container(color: Colors.white, height: 100, width: 3),
-              Container(color: Colors.black, height: 100, width: 100, ),//child: Image.asset('')
+               Container(color: Colors.black, height: screenHeight * 0.13, width: screenWidth * 0.24, ),//child: Image.asset('')
               Container(color: Colors.white, height: 100, width: 3)
             ],
           ),
-          Container(color: Colors.white, width: 100, height: 3),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
-         
-            children: <Widget>[
-              Container(color: Colors.black, height: 100, width: 100, child: Text ('2', style: TextStyle(color: Colors.white))),
-              Container(color: Colors.white, height: 100, width: 3),
-              Container(color: Colors.black, height: 100, width: 100, ),//child: Image.asset('')
-              Container(color: Colors.white, height: 100, width: 3)
-            ],
           ),
-          Container(color: Colors.white, width: 100, height: 3),
-          Row(
+          
+          Container(color: Colors.white,width: 2, height: 3),
+          Expanded(
+            flex:3,
+            child: Row(
             mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
-      
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Container(color: Colors.black, height: 100, width: 100, child: Text ('3', style: TextStyle(color: Colors.white))),
-              Container(color: Colors.white, height: 100, width: 3),
-              Container(color: Colors.black, height: 100, width: 100, ),//child: Image.asset('')
-              Container(color: Colors.white, height: 100, width: 3)
-            ],
-          ),
             
-          Container(color: Colors.white, width: 100, height: 3),
-          Container(height: 50,width: 100),
-          const RecentDrinkWidget(),
-          // const MyScreen(),
+               Container(color: Colors.black,  height: screenHeight * 0.13, width: screenWidth * 0.24,   child: Text ('3', style: TextStyle(color: Colors.white))),
+              Container(color: Colors.white,  width: 3),
+               Container(color: Colors.black, height: screenHeight * 0.13, width: screenWidth * 0.24,  ),//child: Image.asset('')
+              Container(color: Colors.white, width: 3)
+            ],
+            
+          ),
+          ),
+         
+           
+          Container(color: Colors.white, width: screenWidth * 0.27, height: 1),
+           Expanded(
+            flex: 3,
+            child:  const RecentDrinkWidget(),
+          ),
+          const Expanded(
+            
+            child: MyScreen(),
+          ),
+           
         ],
+      
       ),
     );
   }
@@ -104,16 +124,21 @@ class RecentDrinkWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return Center(
+      
+
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
         children: <Widget>[
-          Container(color: Colors.black, height: 100, width: 100, ),//child:Image.asset('')
-          Container(color: Colors.black, height: 100, width: 100, ),//child:Image.asset('')
-          Container(color: Colors.black, height: 100, width: 100, ),//child:Image.asset('')
-          Container(color: Colors.black, height: 100, width: 100, ),//child:Image.asset('')
+          Container(color: Colors.black, height: screenHeight * 0.15, width: screenWidth * 0.25, ),//child:Image.asset('')
+          Container(color: Colors.black, height: screenHeight * 0.15, width: screenWidth * 0.25 ),//child:Image.asset('')
+          Container(color: Colors.black, height: screenHeight * 0.15, width: screenWidth * 0.25 ),//child:Image.asset('')
+          Container(color: Colors.black, height: screenHeight * 0.15, width: screenWidth * 0.25, ),//child:Image.asset('')
         ],
       ),
+    
     );
   }
   
@@ -131,19 +156,26 @@ class MyScreen extends StatefulWidget {
       @override
       Widget build(BuildContext context) {
         return Scaffold(
-          appBar: AppBar(title: const Text('Button to Open Widget')),
           body:  Column(
+            mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
+            crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      _showOtherWidget = !_showOtherWidget; // Toggle visibility
-                    });
-                  },
-                  child: const Text('Toggle Other Widget'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center, 
+                  children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      debugPrint('button press');
+                      setState(() {
+                        _showOtherWidget = !_showOtherWidget; // Toggle visibility
+                      });
+                    },
+                    child: const Text('+'),
+                  ),
+                  if (_showOtherWidget) // Conditionally render the other widget
+                    const OtherWidget(),
+                ],
                 ),
-                if (_showOtherWidget) // Conditionally render the other widget
-                  const OtherWidget(),
               ],
         )
         );
