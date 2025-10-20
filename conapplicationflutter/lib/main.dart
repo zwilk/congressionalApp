@@ -6,6 +6,7 @@ List allDrinks = [];
 
 List topThree = ['one','two','three'];
 
+
 void main() {
   addDrink("Original");
   addDrink("Lo Carb");
@@ -101,7 +102,7 @@ void main() {
     energy.printDrinkProfile();
   }
 
-   runApp(const MyApp());
+runApp(const ExpandedApp());
 }
 
 void addDrink(String flavor){
@@ -155,66 +156,202 @@ topThree[place-1] = ID;
 
 
 
+class ExpandedApp extends StatelessWidget {
+  const ExpandedApp({super.key});
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 184, 16, 16)),
+
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Expanded Column Sample')),
+        body:  ExpandedExample(screenHeight: screenHeight,screenWidth: screenWidth,),
+
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+ 
+  
+class ExpandedExample extends StatelessWidget {
+  final  double screenHeight, screenWidth;
+   const ExpandedExample({super.key,required this.screenHeight, required this.screenWidth});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+    
+    return Center(
+      child: Column(
+        
+        mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
+  
+        
+        children: <Widget>[
+     Row(
+              mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
+          
+              children: <Widget>[
+                
+                  CircleAvatar(     
+                    radius: 40, // Defines the size of the circle
+                    backgroundColor: Colors.black, // Background color of the avatar
+                  // backgroundImage: AssetImage(''), // Optional background image
+                  ),
+                    Expanded(child: Row( children: <Widget>[Container(color: Colors.black, width:screenWidth * 0.75, child: Text ('', style: TextStyle(color: Colors.white))),]),),
+                    
+              ], 
 
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
             ),
-          ],
-        ),
+
+      
+           
+                          //  Container(color: Colors.white, height: 3, width: 100),
+
+
+            Expanded(
+              flex: 3,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Container(color: Colors.black, height: screenHeight * 0.13, width: screenWidth * 0.24, child: Text ('1', style: TextStyle(color: Colors.white))),
+                  Container(color: Colors.white, height: 100, width: 3),
+                  Container(color: Colors.black, height: screenHeight * 0.13, width: screenWidth * 0.24, ),//child: Image.asset('')
+                  Container(color: Colors.white, height: 100, width: 3),
+                ],
+              ),
+          ),
+         Container(color: Colors.white, width:2, height: 3),
+         
+          Expanded(
+            flex: 3,
+            child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
+         
+            children: <Widget>[
+               Container(color: Colors.black, height: screenHeight * 0.13, width: screenWidth * 0.24, child: Text ('2', style: TextStyle(color: Colors.white))),
+              Container(color: Colors.white, height: 100, width: 3),
+               Container(color: Colors.black, height: screenHeight * 0.13, width: screenWidth * 0.24, ),//child: Image.asset('')
+              Container(color: Colors.white, height: 100, width: 3)
+            ],
+          ),
+          ),
+          
+          Container(color: Colors.white,width: 2, height: 3),
+          Expanded(
+            flex:3,
+            child: Row(
+            mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+            
+               Container(color: Colors.black,  height: screenHeight * 0.13, width: screenWidth * 0.24,   child: Text ('3', style: TextStyle(color: Colors.white))),
+              Container(color: Colors.white,  width: 3),
+               Container(color: Colors.black, height: screenHeight * 0.13, width: screenWidth * 0.24,  ),//child: Image.asset('')
+              Container(color: Colors.white, width: 3)
+            ],
+            
+          ),
+          ),
+         
+           
+          Container(color: Colors.white, width: screenWidth * 0.27, height: 1),
+           Expanded(
+            flex: 3,
+            child:  const RecentDrinkWidget(),
+          ),
+          const Expanded(
+            
+            child: MyScreen(),
+          ),
+           
+        ],
+      
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
+
+class RecentDrinkWidget extends StatelessWidget {
+  const RecentDrinkWidget({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+        final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    return Center(
+      
+
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
+        children: <Widget>[
+          Container(color: Colors.black, height: screenHeight * 0.15, width: screenWidth * 0.25, ),//child:Image.asset('')
+          Container(color: Colors.black, height: screenHeight * 0.15, width: screenWidth * 0.25 ),//child:Image.asset('')
+          Container(color: Colors.black, height: screenHeight * 0.15, width: screenWidth * 0.25 ),//child:Image.asset('')
+          Container(color: Colors.black, height: screenHeight * 0.15, width: screenWidth * 0.25, ),//child:Image.asset('')
+        ],
+      ),
+    
+    );
+  }
+  
+}
+class MyScreen extends StatefulWidget {
+      const MyScreen({super.key});
+
+      @override
+      State<MyScreen> createState() => _MyScreenState();
+    }
+
+    class _MyScreenState extends State<MyScreen> {
+      bool _showOtherWidget = false; // State variable to control visibility
+
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          body:  Column(
+            mainAxisAlignment: MainAxisAlignment.center, // Centers children vertically
+            crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center, 
+                  children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      debugPrint('button press');
+                      setState(() {
+                        _showOtherWidget = !_showOtherWidget; // Toggle visibility
+                      });
+                    },
+                    child: const Text('+'),
+                  ),
+                  if (_showOtherWidget) // Conditionally render the other widget
+                    const OtherWidget(),
+                ],
+                ),
+              ],
+        )
+        );
+      }
+    }
+    class OtherWidget extends StatelessWidget {
+      const OtherWidget({super.key});
+
+      @override
+      Widget build(BuildContext context) {
+        return Container(
+          margin: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
+          color: Colors.blueAccent,
+          child: const Text(
+            'This is the widget opened by the button!',
+            style: TextStyle(color: Colors.black, fontSize: 18),
+          ),
+        );
+      }
+    }
